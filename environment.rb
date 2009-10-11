@@ -13,7 +13,7 @@ configure do
                  :title => 'Mild Dystopia',
                  :author => 'Max Ogden',
                  :url => 'http://www.milddystopia.com/',
-                 :url_base => 'www.milddystopia.com'
+                 :url_base => '174.143.174.214'
                )
 end
 
