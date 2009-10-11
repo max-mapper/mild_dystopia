@@ -43,7 +43,7 @@ class PowerTron
   end
   
   def lookup_user(sessionkey)
-    @r[sessionkey]
+    @r["#{sessionkey}"]
   end
   
   def lookup_email(username)
