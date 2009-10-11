@@ -1,0 +1,22 @@
+!!!
+%html{ :xmlns => "http://www.w3.org/1999/xhtml", :"xml:lang" =>"en", :lang =>"en"}
+  %head
+    %title== "Pick a Username"     
+  %body
+    #header
+      #title
+        Pick A Username, Hit Enter
+    #pick_username
+      - if session[:error]
+        = session[:error]
+        - session[:error] = nil
+      - if session[:openid]
+        %p{:style => "margin-left:10px;"} 
+          #messageform{:style => "width:80%"}
+            %form{:method => "post", :action => "/save", :style => "margin-left:10px;"}
+              %input{:type => "text", :name => "username"}
+              %button{:type => "submit", :class => "btn"}
+                %span
+                  %span
+                    %b
+                    Submit

@@ -1,4 +1,22 @@
-%h2 Main Page
-%p Here is some text.
-%p Here is a <a href='/'>link</a>.
-%p ttys!
+#sign_in
+  - if @username
+    %form{:method => "link", :action => "/logout"}
+      = partial :styled_button, :locals => {:text => "Logout #{@username}"}
+  - else
+    #sign_in_button
+    %form{:method => "post", :action => google_openid_action}
+      = partial :google_button, :locals => {:text => "Sign in with"}
+#add_post
+  
+#posts
+  - if @username
+    - @posts.each do |post|
+      .post
+        .author
+          %img{:src => gravatar_url(@email), :class => "gravatar"}
+          %p.username= post["author"]
+        .content
+          - if post["image"]
+            %a{:href => post["image"]}
+              %img{:src => post["image"]}
+          %p= post["post"]
