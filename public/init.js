@@ -2,12 +2,12 @@ $(document).ready(function() {
   $("#postToggle").click(function(){
       if ($("#messagebox").is(":hidden")){
           $("#messagebox").slideDown("slow");
-          $("#toggletext").html("Hide postbox");
+          // $("#toggletext").html("Hide postbox");
           $("#toggleimage").attr("src", "contract.png");
       }
       else{
           $("#messagebox").slideUp("slow");
-          $("#toggletext").html("Add a post");
+          // $("#toggletext").html("Add a post");
           $("#toggleimage").attr("src", "expand.png");
           }
   });

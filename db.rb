@@ -12,6 +12,7 @@ class PowerTron
       id = post.match(/^(\w+)\:entries:(\d+)/)[2]
       data["post"] = @r[post]
       data["author"] = author
+      data["email"] = get_email(author)
       image = @r["#{author}:upload_for:#{id}"]
       if image
         data["image"] = "/uploads/#{image}"
@@ -42,11 +43,11 @@ class PowerTron
     
   end
   
-  def lookup_user(sessionkey)
+  def get_user(sessionkey)
     @r["#{sessionkey}"]
   end
   
-  def lookup_email(username)
+  def get_email(username)
     @r["#{username}:email"]
   end
   

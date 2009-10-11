@@ -29,9 +29,9 @@ end
 before do
   @powertron ||= PowerTron.new
   if session[:openid]
-    @username ||= @powertron.lookup_user(session[:openid])
+    @username ||= @powertron.get_user(session[:openid])
     if @username
-      @email ||= @powertron.lookup_email(@username)
+      @email ||= @powertron.get_email(@username)
     end
   else
     @username = nil
@@ -101,7 +101,7 @@ post '/imagepost' do
 end
 
 get '/pickusername' do
-  username = @powertron.lookup_user(session[:openid])
+  username = @powertron.get_user(session[:openid])
   if !username
     haml :pickusername
   else

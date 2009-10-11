@@ -6,14 +6,14 @@ require 'redis'
 require 'db'
 require 'ostruct'
 require 'digest/md5'
-
 require 'sinatra' unless defined?(Sinatra)
+
 configure do
   SiteConfig = OpenStruct.new(
                  :title => 'Mild Dystopia',
                  :author => 'Max Ogden',
                  :url => 'http://www.milddystopia.com/',
-                 :url_base => '174.143.174.214'
+                 :url_base => 'www.milddystopia.com'
                )
 end
 
@@ -32,11 +32,11 @@ def gravatar_url(email,gravatar_options={})
 
   # Default size of the image.
   # If set to nil, the Gravatar default size of 80px will be used.
-  gravatar_options[:size] ||= nil 
+  gravatar_options[:size] ||= "60px" 
 
   # Default image url to be used when no gravatar is found
   # or when an image exceeds the rating parameter.
-  gravatar_options[:default] ||= nil
+  gravatar_options[:default] ||= "http://#{SiteConfig.url_base}/defaultavatar.png"
 
   # Build the Gravatar url.
   grav_url = 'http://www.gravatar.com/avatar.php?'

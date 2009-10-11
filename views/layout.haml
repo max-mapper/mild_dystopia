@@ -12,7 +12,7 @@
       #header
         #logo
           %a{:href => '/'}
-            %img{:src => 'md_logo.png'}
+            %img{:src => 'md_logo_transparent.png'}
         - if @username
           #messagebox.widget
             %ul.tabnav
@@ -39,10 +39,10 @@
                     type caption here
                   %br
                   = partial :styled_button, :locals => {:text => "Submit"}
-          #postToggle
-            %img{:id => "toggleimage", :src => "expand.png"}
-            %span{:id => "toggletext"}
-              Add a post
+      - if @username
+        #postToggle
+          %img{:id => "toggleimage", :src => "expand.png"}
+          %span{:id => "toggletext"}
       #content= yield
       #footer
         %p#legal
@@ -51,4 +51,7 @@
             Max Ogden
           and
           %a{:href => "http://www.zackdenfeld.com/"}
-            Zack Denfeld
+            Zack Denfeld.
+          Get the code on
+          %a{:href => "http://github.com/maxogden/mild_dystopia"}
+            %img.github{:src => "/github.png"}

@@ -13,7 +13,7 @@
     - @posts.each do |post|
       .post
         .author
-          %img{:src => gravatar_url(@email), :class => "gravatar"}
+          %img{:src => gravatar_url(post["email"]), :class => "gravatar"}
           %p.username= post["author"]
         .content
           - if post["image"]
