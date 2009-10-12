@@ -9,14 +9,13 @@
 #add_post
   
 #posts
-  - if @username
-    - @posts.each do |post|
-      .post
-        .author
-          %img{:src => gravatar_url(post["email"]), :class => "gravatar"}
-          %p.username= post["author"]
-        .content
-          - if post["image"]
-            %a{:href => post["image"]}
-              %img{:src => post["image"]}
-          %p= post["post"]
+  - @posts.each do |post|
+    .post
+      .author
+        %img{:src => gravatar_url(post["email"]), :class => "gravatar"}
+        %p.username= post["author"]
+      .content
+        - if post["image"]
+          %a{:href => post["image"]}
+            %img{:src => post["image"]}
+        %p= post["post"]

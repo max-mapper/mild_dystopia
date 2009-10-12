@@ -39,7 +39,6 @@ before do
 end
 
 get '/' do
-  session[:error] = nil
   @posts = @powertron.get_posts(20)
   haml :root
 end
