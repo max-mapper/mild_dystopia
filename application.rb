@@ -39,6 +39,7 @@ before do
 end
 
 get '/' do
+  session[:error] = nil
   @posts = @powertron.get_posts(20)
   haml :root
 end
@@ -73,14 +74,12 @@ get '/logout' do
 end
 
 post '/save' do
-  puts "#{params['username']}, #{session[:openid]}, #{session[:email]}"
   username_exists = @powertron.save_user(params['username'], session[:openid], session[:email])
   if username_exists
     session[:error] = "Username already taken. Try again"
     redirect '/pickusername'
-  else
-    session[:error] = nil
   end
+  session[:error] = nil
   redirect '/'
 end
 

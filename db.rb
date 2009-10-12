@@ -44,7 +44,8 @@ class PowerTron
   end
   
   def get_user(sessionkey)
-    @r["#{sessionkey}"]
+    puts @r[sessionkey]
+    @r[sessionkey]
   end
   
   def get_email(username)
@@ -52,16 +53,15 @@ class PowerTron
   end
   
   def save_user(username, sessionkey, email)
-    username.gsub!(' ', '')
     if @r.set_member?('usernames', username)
-      return false
+      return true
     else
       @r[username] = sessionkey
       @r.set_add "usernames", username
       @r[sessionkey] = username
       @r[email] = username
       @r["#{username}:email"] = email
-      return true
+      return false
     end
   end
   

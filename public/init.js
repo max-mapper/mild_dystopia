@@ -31,4 +31,14 @@ $(document).ready(function() {
     
   $('#messagebox > ul').tabs({ fx: { height: 'toggle', opacity: 'toggle' } });
   $('#featuredvid > ul').tabs();
+  
+  $("#usernameForm").validate({
+     rules: {
+       username: {
+         required : true,
+         alphanumeric: true,
+         maxlength: 20
+       }
+     }
+  });
 });
