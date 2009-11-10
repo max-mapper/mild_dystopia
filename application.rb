@@ -29,9 +29,9 @@ end
 before do
   @powertron ||= PowerTron.new
   if session[:openid]
-    @username ||= @powertron.get_user(session[:openid])
+    @username ||= @powertron.get_user_for(session[:openid])
     if @username
-      @email ||= @powertron.get_email(@username)
+      @email ||= @powertron.get_email_for(@username)
     end
   else
     @username = nil
@@ -87,6 +87,12 @@ post '/textpost' do
   redirect '/'
 end
 
+post '/update' do
+  if @username
+    @powertron.update_post(@username, params[:element_id], params[:update_value])
+  end
+end
+
 post '/imagepost' do
   unless params[:file] &&
          (tmpfile = params[:file][:tempfile]) &&
@@ -99,7 +105,7 @@ post '/imagepost' do
 end
 
 get '/pickusername' do
-  username = @powertron.get_user(session[:openid])
+  username = @powertron.get_user_for(session[:openid])
   if !username
     haml :pickusername
   else

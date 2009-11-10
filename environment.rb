@@ -3,7 +3,7 @@ require 'rack-openid'
 require 'haml'
 require 'sass'
 require 'redis'
-require 'db'
+require 'lib/db'
 require 'ostruct'
 require 'digest/md5'
 require 'sinatra' unless defined?(Sinatra)
@@ -13,7 +13,8 @@ configure do
                  :title => 'Mild Dystopia',
                  :author => 'Max Ogden',
                  :url => 'http://www.milddystopia.com/',
-                 :url_base => '174.143.174.214'
+                 # :url_base => '174.143.174.214'
+                 :url_base => 'milddystopia.com'
                )
 end
 
@@ -23,8 +24,9 @@ end
 
 
 # Returns a Gravatar URL associated with the email parameter.
-def gravatar_url(email,gravatar_options={})
-
+def gravatar_url(email, gravatar_options={})
+  default = "http://#{SiteConfig.url_base}/defaultavatar.png"
+  return default if email.nil?
   # Default highest rating.
   # Rating can be one of G, PG, R X.
   # If set to nil, the Gravatar default of X will be used.
@@ -36,7 +38,7 @@ def gravatar_url(email,gravatar_options={})
 
   # Default image url to be used when no gravatar is found
   # or when an image exceeds the rating parameter.
-  gravatar_options[:default] ||= "http://#{SiteConfig.url_base}/defaultavatar.png"
+  gravatar_options[:default] ||= default
 
   # Build the Gravatar url.
   grav_url = 'http://www.gravatar.com/avatar.php?'

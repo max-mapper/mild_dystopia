@@ -32,6 +32,12 @@ $(document).ready(function() {
   $('#messagebox > ul').tabs({ fx: { height: 'toggle', opacity: 'toggle' } });
   $('#featuredvid > ul').tabs();
   
+  $(".post .content p").editInPlace({
+      url: '/update',
+      textarea_cols: 100,
+      field_type: 'textarea'
+  });
+  
   $("#usernameForm").validate({
      rules: {
        username: {
